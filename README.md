@@ -12,6 +12,6 @@ Content:
 
 To do list:
 
-- Clean all code, make it readable and reproducable
+- Clean all codes, make them readable and reproducable
 
-- Attach original experimental results to facilitate futhre research
+- Attach original experimental results here to facilitate futhre research
