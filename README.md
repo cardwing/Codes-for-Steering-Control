@@ -14,4 +14,6 @@ To do list:
 
 - Clean all codes, make them readable and reproducable
 
+- Put codes of steering angle prediction (tensorflow) and lane detection (torch and pytorch) here
+
 - Attach original experimental results here to facilitate future research
