@@ -14,4 +14,4 @@ To do list:
 
 - Clean all codes, make them readable and reproducable
 
-- Attach original experimental results here to facilitate futhre research
+- Attach original experimental results here to facilitate future research
