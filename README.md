@@ -1,5 +1,4 @@
 # Codes for autonomous driving tasks
-Some useful python codes, accumulated daily!!!
 
 Content:
 
