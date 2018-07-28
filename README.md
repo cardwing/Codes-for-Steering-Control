@@ -18,7 +18,7 @@ To do list:
 - Attach original experimental results here to facilitate future research
 
 
-Instructions on running the code in the pytorch-semantic-segmentation repo
+Instructions on running the code in the pytorch-semantic-segmentation-master repo
 
 FCN (mIoU 71.03%)
 ```{r, engine='bash', count_lines}
