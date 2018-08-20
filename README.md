@@ -3,7 +3,7 @@
 Content:
 
 |Tasks|Framework|Original Author|Modified By|State|
-|---|---|---:|---|---|
+|---|---|---|---|---|
 |Semantic segmentation|Pytorch|[Li Xiaoxiao](https://scholar.google.com.hk/citations?user=udZam0oAAAAJ&hl=zh-CN)|HOU Yuenan|already released|
 |Steering angle prediction|Tensorflow|HOU Yuenan|--|to be released|
 |Lane detection|Torch|[Pan Xinggang](https://github.com/XingangPan)|HOU Yuenan|to be released|
