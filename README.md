@@ -2,6 +2,14 @@
 
 Content:
 
+|Tasks|Framework|Original Author|Modified By|State|
+|---|---:|---:|---:|---:|---|
+|Semantic segmentation|Pytorch|[Li Xiaoxiao](https://scholar.google.com.hk/citations?user=udZam0oAAAAJ&hl=zh-CN)|HOU Yuenan|already released|
+|Steering angle prediction|Tensorflow|HOU Yuenan|--|to be released|
+|Lane detection|Torch|[Pan Xinggang](https://github.com/XingangPan)|HOU Yuenan|to be released|
+|Lane detection|Tensorflow|[Luo Yao](https://github.com/MaybeShewill-CV)|HOU Yuenan|on-going|
+
+
 - Semantic segmentation codes (based on pytorch, author: [Li Xiaoxiao](https://scholar.google.com.hk/citations?user=udZam0oAAAAJ&hl=zh-CN), modified: Hou Yuenan, state: already released)
 
 - Steering angle prediction codes (based on Tensorflow, author: Hou Yuenan, state: to be released)
