@@ -1,6 +1,6 @@
 # Codes for autonomous driving tasks
 
-Content:
+## Main Content:
 
 |Tasks|Framework|Original Author|Modified By|State|
 |:---:|:---:|:---:|:---:|:---:|
@@ -10,7 +10,7 @@ Content:
 |Lane detection|Tensorflow|[Luo Yao](https://github.com/MaybeShewill-CV)|HOU Yuenan|on-going|
 
 
-To do list:
+## To do list:
 
 - Clean all codes, make them readable and reproducable
 
@@ -19,7 +19,7 @@ To do list:
 - Attach original experimental results here to facilitate future research
 
 
-Instructions on running the code in the pytorch-semantic-segmentation-master repo
+## Instructions on running the code in the pytorch-semantic-segmentation-master repo
 
 FCN (mIoU 71.03%)
 ```{r, engine='bash', count_lines}
