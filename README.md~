@@ -13,12 +13,6 @@
 
 - Tensorflow 1.4.0
 
-## Installations
-    conda create -n tensorflow_gpu pip python=2.7
-    source activate tensorflow_gpu
-    pip install --upgrade tensorflow-gpu==1.4
-
-
 ## To do list:
 
 - Clean all codes, make them readable and reproducable
