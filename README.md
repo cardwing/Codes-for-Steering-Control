@@ -21,6 +21,8 @@
 
 ## To do list:
 
+- Release the codes for steering control soon
+
 - Clean all codes, make them readable and reproducable
 
 - Put codes of steering angle prediction (tensorflow) and lane detection (torch and pytorch) here
