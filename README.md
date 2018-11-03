@@ -1,6 +1,6 @@
 # Codes for autonomous driving tasks
 
-Codes for our AAAI 2019 paper. (Available soon!)
+Codes for our AAAI 2019 paper. (Coming soon!)
 
 ## Main Content:
 
