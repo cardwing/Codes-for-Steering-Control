@@ -9,7 +9,7 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
 |Tasks|Framework|Original Author|Modified By|State|
 |:---:|:---:|:---:|:---:|:---:|
 |Semantic segmentation|Pytorch|[Li Xiaoxiao](https://scholar.google.com.hk/citations?user=udZam0oAAAAJ&hl=zh-CN)|HOU Yuenan|already released|
-|Steering angle prediction|Tensorflow|HOU Yuenan|--|to be released|
+|Steering angle prediction|Tensorflow|[HOU Yuenan](https://cardwing.github.io/)|--|to be released|
 |Lane detection|Torch|[Pan Xinggang](https://github.com/XingangPan)|HOU Yuenan|to be released|
 |Lane detection|Tensorflow|[Luo Yao](https://github.com/MaybeShewill-CV)|HOU Yuenan|on-going|
 
