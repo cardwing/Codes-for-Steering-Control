@@ -1,5 +1,3 @@
-## Codes for autonomous driving tasks
-
 Codes for "Learning to Steer by Mimicking Features from Heterogeneous Auxiliary Networks". (Coming soon!)
 
 Besides, our project page is now available at [FM-Net](https://cardwing.github.io/projects/FM-Net).
@@ -34,7 +32,7 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
 - Attach original experimental results here to facilitate future research
 
 
-### Instructions on running the code in the pytorch-semantic-segmentation-master repo
+### Run the code in pytorch-semantic-segmentation-master
 
 FCN (mIoU 71.03%)
 ```{r, engine='bash', count_lines}
