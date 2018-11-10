@@ -6,7 +6,7 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
 
 ### Demo video
 
-- Performance of Auxiliary networks on unseen target data:
+- Performance of auxiliary networks on unseen target data:
 
 <img src='https://github.com/cardwing/Codes-for-Steering-Control/blob/master/demo_video/demo_AX.gif' width=640>
 
