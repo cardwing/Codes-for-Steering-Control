@@ -4,8 +4,8 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
 
 ### Demo video
 
-![demo1](https://github.com/cardwing/Codes-for-Steering-Control/blob/master/demo_video/demo_AX.gif) 
-![demo1](https://github.com/cardwing/Codes-for-Steering-Control/blob/master/demo_video/demo_FM.gif)
+<img src='https://github.com/cardwing/Codes-for-Steering-Control/blob/master/demo_video/demo_AX.gif' width=320>
+<img src='https://github.com/cardwing/Codes-for-Steering-Control/blob/master/demo_video/demo_FM.gif' width=320>
 
 ### Main Content:
 
