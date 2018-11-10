@@ -2,6 +2,8 @@ Codes for "Learning to Steer by Mimicking Features from Heterogeneous Auxiliary 
 
 Besides, our project page is now available at [FM-Net](https://cardwing.github.io/projects/FM-Net).
 
+<img src='./demo_video/intro.png' width=880>
+
 ### Demo video
 
 - Performance of Auxiliary networks on unseen target data:
