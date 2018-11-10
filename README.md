@@ -2,6 +2,10 @@ Codes for "Learning to Steer by Mimicking Features from Heterogeneous Auxiliary 
 
 Besides, our project page is now available at [FM-Net](https://cardwing.github.io/projects/FM-Net).
 
+### Demo video
+
+
+
 ### Main Content:
 
 |Tasks|Framework|Original Author|Modified By|State|
@@ -20,18 +24,6 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
     source activate tensorflow_gpu
     pip install --upgrade tensorflow-gpu==1.4
 
-
-### To do list:
-
-- Release the codes for steering control soon
-
-- Clean all codes, make them readable and reproducable
-
-- Put codes of steering angle prediction (tensorflow) and lane detection (torch and pytorch) here
-
-- Attach original experimental results here to facilitate future research
-
-
 ### Run the code in pytorch-semantic-segmentation-master
 
 FCN (mIoU 71.03%)
@@ -43,6 +35,25 @@ PSPNet
 ```{r, engine='bash', count_lines}
 python3 train_pspnet.py VOCAug PSPNet train val --lr 0.01 --gpus 0 1 2 3 4 5 6 7 --npb --test_size 473
 ```
+
+### Testing
+
+
+
+### Training
+
+
+
+### To do list:
+
+- Release the codes for steering control soon
+
+- Clean all codes, make them readable and reproducable
+
+- Put codes of steering angle prediction (tensorflow) and lane detection (torch and pytorch) here
+
+- Attach original experimental results here to facilitate future research
+
 
 ### Citation
 
