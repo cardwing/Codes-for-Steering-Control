@@ -68,12 +68,11 @@ python3 train_pspnet.py VOCAug PSPNet train val --lr 0.01 --gpus 0 1 2 3 4 5 6 7
 If you use the codes, please cite the following publications:
 
 ``` 
-@inproceedings{xxx,
- author = {Yuenan Hou, Zheng Ma, Chunxiao Liu, and Chen Change Loy},
- title = {Learning to Steer by Mimicking Features from Heterogeneous Auxiliary Networks},
- booktitle = {AAAI Conference on Artificial Intelligence (AAAI)},
- month = {January},
- year = {2019} 
+@article{hou2018learning,
+  title={Learning to Steer by Mimicking Features from Heterogeneous Auxiliary Networks},
+  author={Hou, Yuenan and Ma, Zheng and Liu, Chunxiao and Loy, Chen Change},
+  journal={arXiv preprint arXiv:1811.02759},
+  year={2018}
 }
 ```
 
