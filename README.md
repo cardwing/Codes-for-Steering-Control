@@ -77,7 +77,7 @@ If you use the codes, please cite the following publications:
 ```
 
 ### Acknowledgement
-This repo is built upon [Udacity](https://github.com/udacity/self-driving-car)
+This repo is built upon [Udacity](https://github.com/udacity/self-driving-car).
 
 
 ### Contact
