@@ -91,8 +91,8 @@ If you have any problems in reproducing the results, just raise an issue in this
 
 ## To-Do List:
 
-- [] Release codes for steering control
+- [ ] Release codes for steering control
 
-- [] Clean all codes, make them readable and reproducable
+- [ ] Clean all codes, make them readable and reproducable
 
-- [] Attach original experimental results
+- [ ] Attach original experimental results
