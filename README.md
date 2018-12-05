@@ -14,25 +14,38 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
 
 <img src='https://github.com/cardwing/Codes-for-Steering-Control/blob/master/demo_video/demo_FM.gif' width=640>
 
-### Main Content:
+# Content:
 
-|Tasks|Framework|Original Author|Modified By|State|
-|:---:|:---:|:---:|:---:|:---:|
-|Semantic segmentation|Pytorch|[Li Xiaoxiao](https://scholar.google.com.hk/citations?user=udZam0oAAAAJ&hl=zh-CN)|HOU Yuenan|already released|
-|Steering angle prediction|Tensorflow|[HOU Yuenan](https://cardwing.github.io/)|--|to be released|
-|Lane detection|Torch|[Pan Xinggang](https://github.com/XingangPan)|HOU Yuenan|to be released|
-|Lane detection|Tensorflow|[Luo Yao](https://github.com/MaybeShewill-CV)|HOU Yuenan|on-going|
+* [Installation](#Installation)
+* [Datasets](#Datasets)
+  * [Udacity](#Udacity)
+  * [Comma-ai](#Comma-ai)
+  * [BDD100K](#BDD100K)
+* [Semantic-Segmentation](#Semantic-Segmentation)
+* [Steering-Control](#Steering-Control)
+  * [Test](#Test)
+  * [Train](#Train)
+* [Performance](#Performance)
+* [Others](#Others)
+  * [Citation](#Citation)
+  * [Acknowledgement](#Acknowledgement)
+  * [Contact](#Contact)
 
-### Prerequisites
-
-- Tensorflow 1.4.0
-
-### Installations
+# Installations
     conda create -n tensorflow_gpu pip python=2.7
     source activate tensorflow_gpu
     pip install --upgrade tensorflow-gpu==1.4
+    conda install pytorch torchvision -c pytorch
+    
+# Datasets
 
-### Run the code in pytorch-semantic-segmentation-master
+## Udacity
+
+## Comma-ai
+
+## BDD100K
+    
+# Semantic-Segmentation
 
 FCN (mIoU 71.03%)
 ```{r, engine='bash', count_lines}
@@ -44,26 +57,19 @@ PSPNet
 python3 train_pspnet.py VOCAug PSPNet train val --lr 0.01 --gpus 0 1 2 3 4 5 6 7 --npb --test_size 473
 ```
 
-### Testing
+Note that you can use the code to train models (e.g., PSPNet, SegNet and FCN) in Cityscape.
+
+# Steering-Control
+
+## Test
 
 
-
-### Training
-
+## Train
 
 
-### To do list:
+# Others
 
-- Release the codes for steering control soon
-
-- Clean all codes, make them readable and reproducable
-
-- Put codes of steering angle prediction (tensorflow) and lane detection (torch and pytorch) here
-
-- Attach original experimental results here to facilitate future research
-
-
-### Citation
+## Citation
 
 If you use the codes, please cite the following publications:
 
@@ -76,9 +82,17 @@ If you use the codes, please cite the following publications:
 }
 ```
 
-### Acknowledgement
+## Acknowledgement
 This repo is built upon [Udacity](https://github.com/udacity/self-driving-car).
 
 
-### Contact
+## Contact
 If you have any problems in reproducing the results, just raise an issue in this repo.
+
+## To-Do List:
+
+- [] Release codes for steering control
+
+- [] Clean all codes, make them readable and reproducable
+
+- [] Attach original experimental results
