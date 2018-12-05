@@ -80,7 +80,7 @@ Coming soon.
 1. Udacity testing set:
 
 
-| | | |
+||||
 | --- |:---:|:---:|
 |Model|MAE|RMSE|
 |3D CNN|2.5598|3.6646|
