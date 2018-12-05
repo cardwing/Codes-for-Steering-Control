@@ -1,4 +1,4 @@
-Codes for ["Learning to Steer by Mimicking Features from Heterogeneous Auxiliary Networks"](https://arxiv.org/abs/1811.02759). (Coming soon!)
+Codes for ["Learning to Steer by Mimicking Features from Heterogeneous Auxiliary Networks"](https://arxiv.org/abs/1811.02759).
 
 Besides, our project page is now available at [FM-Net](https://cardwing.github.io/projects/FM-Net).
 
