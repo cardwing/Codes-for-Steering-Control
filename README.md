@@ -79,10 +79,8 @@ Coming soon.
 
 1. Udacity testing set:
 
-
-
-| --- |:---:|:---:|
 |Model|MAE|RMSE|
+| --- |:---:|:---:|
 |3D CNN|2.5598|3.6646|
 |3D CNN + LSTM|1.8612|2.7167|
 |3D ResNet (ours)|1.9167|2.8532|
