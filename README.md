@@ -80,7 +80,7 @@ Coming soon.
 1. Udacity testing set:
 
 |Model|MAE|RMSE|
-|:---:|:---:|:---:|
+| --- |:---:|:---:|
 |3D CNN|2.5598|3.6646|
 |3D CNN + LSTM|1.8612|2.7167|
 |3D ResNet (ours)|1.9167|2.8532|
@@ -90,7 +90,7 @@ Coming soon.
 2. Comma-ai testing set:
 
 |Model|MAE|RMSE|
-|:---:|:---:|:---:|
+| --- |:---:|:---:|
 |3D CNN|1.7539|2.7316|
 |3D CNN + LSTM|1.4716|1.8397|
 |3D ResNet (ours)|1.5427|2.4288|
@@ -100,7 +100,7 @@ Coming soon.
 3. BDD100K testing set:
 
 |Model|Accuracy|
-|:---:|:---:|
+| --- |:---:|
 |FCN + LSTM|82.03%|
 |3D CNN + LSTM|82.94%|
 |3D ResNet + LSTM (ours)|83.69%|
