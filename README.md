@@ -79,13 +79,15 @@ Coming soon.
 
 1. Udacity testing set:
 
+
+| | | |
+| --- |:---:|:---:|
 |Model|MAE|RMSE|
- --- |:---:|:---:
-3D CNN|2.5598|3.6646
-3D CNN + LSTM|1.8612|2.7167
-3D ResNet (ours)|1.9167|2.8532
-3D ResNet + LSTM (ours)|1.7147|2.4899
-**FM-Net (ours)**|**1.6236**|**2.3549**
+|3D CNN|2.5598|3.6646|
+|3D CNN + LSTM|1.8612|2.7167|
+|3D ResNet (ours)|1.9167|2.8532|
+|3D ResNet + LSTM (ours)|1.7147|2.4899|
+|**FM-Net (ours)**|**1.6236**|**2.3549**|
 
 2. Comma-ai testing set:
 
