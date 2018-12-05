@@ -41,9 +41,15 @@ Besides, our project page is now available at [FM-Net](https://cardwing.github.i
 
 ## Udacity
 
+The whole dataset is available at [Udacity](https://github.com/udacity/self-driving-car).
+
 ## Comma-ai
 
+The whole dataset is available at [Comma-ai](https://github.com/commaai/research).
+
 ## BDD100K
+
+The whole dataset is available at [BDD100K](http://bdd-data.berkeley.edu/).
     
 # Semantic-Segmentation
 
@@ -63,9 +69,42 @@ Note that you can use the code to train models (e.g., PSPNet, SegNet and FCN) in
 
 ## Test
 
+Coming soon.
 
 ## Train
 
+Coming soon.
+
+# Performance
+
+1. Udacity testing set:
+
+|Model|MAE|RMSE|
+|:---:|:---:|:---:|
+|3D CNN|2.5598|3.6646|
+|3D CNN + LSTM|1.8612|2.7167|
+|3D ResNet (ours)|1.9167|2.8532|
+|3D ResNet + LSTM (ours)|1.7147|2.4899|
+|**FM-Net (ours)**|**1.6236**|**2.3549**|
+
+2. Comma-ai testing set:
+
+|Model|MAE|RMSE|
+|:---:|:---:|:---:|
+|3D CNN|1.7539|2.7316|
+|3D CNN + LSTM|1.4716|1.8397|
+|3D ResNet (ours)|1.5427|2.4288|
+|3D ResNet + LSTM (ours)|0.7989|1.1519|
+|**FM-Net (ours)**|**0.7048**|**0.9831**|
+
+3. BDD100K testing set:
+
+|Model|Accuracy|
+|:---:|:---:|
+|FCN + LSTM|82.03%|
+|3D CNN + LSTM|82.94%|
+|3D ResNet + LSTM (ours)|83.69%|
+|**FM-Net (ours)**|**85.03%**|
 
 # Others
 
