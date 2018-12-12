@@ -74,6 +74,7 @@ Note that you can use the code to train models (e.g., PSPNet, SegNet and FCN) in
 cd steering-control
 CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py
 ```
+Note that you need to read [3d_resnet_lstm.py](./steering-control/3d_resnet_lstm.py) carefully and modify the path accordingly. I will remove the hard code part soon.
 
 ## Train
 
