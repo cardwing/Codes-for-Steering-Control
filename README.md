@@ -55,6 +55,7 @@ The whole dataset is available at [BDD100K](http://bdd-data.berkeley.edu/).
 
 FCN (mIoU 71.03%)
 ```{r, engine='bash', count_lines}
+cd pytorch-semantic-segmentation-master
 python3 main.py VOCAug FCN train val --lr 0.01 --gpus 0 1 2 3 4 5 6 7 --npb
 ```
 
@@ -134,4 +135,4 @@ If you have any problems in reproducing the results, just raise an issue in this
 
 - [ ] Clean all codes, make them readable and reproducable
 
-- [ ] Attach original experimental results
+- [x] Attach original experimental results
