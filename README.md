@@ -70,11 +70,16 @@ Note that you can use the code to train models (e.g., PSPNet, SegNet and FCN) in
 
 ## Test
 
-Coming soon.
+```{r, engine='bash', count_lines}
+cd steering-control
+CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py
+```
 
 ## Train
 
-Coming soon.
+```{r, engine='bash', count_lines}
+CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py
+```
 
 # Performance
 
@@ -131,7 +136,7 @@ If you have any problems in reproducing the results, just raise an issue in this
 
 ## To-Do List:
 
-- [ ] Release codes for steering control
+- [x] Release codes for steering control
 
 - [ ] Clean all codes, make them readable and reproducable
 
