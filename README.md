@@ -143,4 +143,4 @@ If you have any problems in reproducing the results, just raise an issue in this
 
 - [x] Clean all codes, make them readable and reproducable
 
-- [] Release codes for BDD100K dataset
+- [ ] Release codes for BDD100K dataset
