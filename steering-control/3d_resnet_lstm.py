@@ -26,45 +26,31 @@ from config import Config
 from tensorflow.python.ops import control_flow_ops
 from tensorflow.python.training import moving_averages
 from tensorflow.python.util.nest import *
+from options import parser
 
 activation = tf.nn.relu
+slim = tf.contrib.slim
 MOVING_AVERAGE_DECAY = 0.9997
 BN_DECAY = MOVING_AVERAGE_DECAY
 BN_EPSILON = 0.001
 CONV_WEIGHT_DECAY = 0.00004
 CONV_WEIGHT_STDDEV = 0.1
-FC_WEIGHT_DECAY = 0.00004
-FC_WEIGHT_STDDEV = 0.01
 RESNET_VARIABLES = 'resnet_variables'
 UPDATE_OPS_COLLECTION = 'resnet_update_ops'  # must be grouped with training op
-IMAGENET_MEAN_BGR = [103.062623801, 115.902882574, 123.151630838, ]
-
-slim = tf.contrib.slim
-_IMAGE_SIZE = 224
-_NUM_CLASSES = 400
-
 HEIGHT = 480
 WIDTH = 640
-
 RNN_SIZE = 32
 RNN_PROJ = 32
-
 LEFT_CONTEXT = 0
 SEQ_LEN = 10
 BATCH_SIZE = 16
 CHANNELS = 3
 NUM_EPOCHS = 100
-_SAMPLE_VIDEO_FRAMES = 79
 KEEP_PROB_TRAIN = 0.25
-
 CSV_HEADER = "num,index,timestamp,width,height,frame_id,filename,angle,torque,speed,lat,long,alt".split(",")
 OUTPUTS = CSV_HEADER[7:]  # angle,torque,speed
 OUTPUT_DIM = 3  # predict steering angle
-
-FLAGS = tf.flags.FLAGS
-
-tf.flags.DEFINE_string('eval_type', 'rgb', 'rgb, flow, or joint')
-tf.flags.DEFINE_boolean('imagenet_pretrained', True, '')
+args = parser.parse_args()
 
 
 class BatchGenerator(object):
@@ -139,10 +125,7 @@ def process_csv(filename, val=0):
 
 (train_seq, valid_seq), (mean, std) = process_csv(filename="complete_dataset.csv",
                                                   val=0)  # concatenated interpolated.csv from rosbags, total_training_dataset.csv
-
-test_seq = read_csv(
-    "challenge_2/exampleSubmissionInterpolatedFinal.csv")  # interpolated.csv for testset filled with dummy values
-
+test_seq = read_csv("exampleSubmissionInterpolatedFinal.csv")  # interpolated.csv for testset filled with dummy values
 layer_norm = lambda x: tf.contrib.layers.layer_norm(inputs=x, center=True, scale=True, activation_fn=None, trainable=True)
 
 def get_optimizer(loss, lrate):
@@ -346,18 +329,20 @@ def _max_pool(x, ksize=3, stride=2):
                           strides=[1, 1, stride, stride, 1],
                           padding='SAME')
 
-with tf.Session() as sess:
-    # build 3D ResNet-50
-    saver = tf.train.import_meta_graph('/home/houyuenan/houyn/pre-trained-models/models/ResNet-L50.meta')
-    saver.restore(sess, '/home/houyuenan/houyn/pre-trained-models/models/ResNet-L50.ckpt')
-    var_list = saver._var_list
-    value=[]
-    for i in range(265):
-        tmp = sess.run(var_list[i], feed_dict={})
-        if tmp.shape[0] < 10:
-            tmp = [tmp / 1.0 / tmp.shape[0] for _ in range(tmp.shape[0])]
-            tmp = np.stack(tmp, axis=0)
-        value.append(tmp)
+if args.flag == 'train':
+    with tf.Session() as sess:
+        # build 3D ResNet-50
+        print('Load pre-trained model')
+        saver = tf.train.import_meta_graph(args.path_pre_trained + '.meta') 
+        saver.restore(sess, args.path_pre_trained + '.ckpt')
+        var_list = saver._var_list
+        value=[]
+        for i in range(265):
+            tmp = sess.run(var_list[i], feed_dict={})
+            if tmp.shape[0] < 10:
+                tmp = [tmp / 1.0 / tmp.shape[0] for _ in range(tmp.shape[0])]
+                tmp = np.stack(tmp, axis=0)
+            value.append(tmp)
 
 
 graph = tf.Graph()
@@ -374,7 +359,6 @@ with graph.as_default():
                              dtype=tf.float32)  # seq_len x batch_size x OUTPUT_DIM
 
     targets_normalized = (targets - mean) / std
-
     input_images = tf.stack([tf.image.decode_png(tf.read_file(x))
                             for x in tf.unstack(tf.reshape(inputs, shape=[(LEFT_CONTEXT + SEQ_LEN) * BATCH_SIZE]))])
     input_images = -1.0 + 2.0 * tf.cast(input_images, tf.float32) / 255.0
@@ -386,16 +370,12 @@ with graph.as_default():
     num_blocks = [3, 4, 6, 3]  # defaults to 50-layer network
     use_bias = False  # defaults to using batch norm
     bottleneck = True
-    # is_training = True
 
     x = input_images
     c = Config()
     c['bottleneck'] = bottleneck
     is_training = tf.placeholder(shape=(), dtype='bool', name='is_training')
     c['is_training'] = is_training
-    # tf.convert_to_tensor(is_training,
-    # dtype='bool',
-    # name='is_training')
     c['ksize'] = 3
     c['stride'] = 1
     c['use_bias'] = use_bias
@@ -503,27 +483,18 @@ with graph.as_default():
 
     mse_gt = tf.reduce_mean(tf.squared_difference(out_gt, targets_normalized))
     mse_autoregressive = tf.reduce_mean(tf.squared_difference(out_autoregressive, targets_normalized))
-
-
     mse_autoregressive_steering = tf.reduce_mean(tf.squared_difference(out_autoregressive[:, :, 0], targets_normalized[:, :, 0]))
     steering_predictions = (out_autoregressive[:, :, 0] * std[0]) + mean[0]
     total_loss = mse_autoregressive_steering + aux_cost_weight * (mse_autoregressive + mse_gt)
-
-    print("Parameter size:")
-    print(np.sum([np.prod(v.get_shape().as_list()) for v in tf.trainable_variables()]))
-
+    # print("Parameter size:")
+    # print(np.sum([np.prod(v.get_shape().as_list()) for v in tf.trainable_variables()])) # calculate parameter size
     optimizer = get_optimizer(total_loss, learning_rate)
     saver = tf.train.Saver(write_version=tf.train.SaverDef.V2)
 
-
-
 gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=1.0)
-
 global_train_step = 0
 global_valid_step = 0
 global_test_step = 0
-KEEP_PROB_TRAIN = 0.25
-
 
 def do_epoch(session, sequences, mode):
     global global_train_step, global_test_step
@@ -534,7 +505,7 @@ def do_epoch(session, sequences, mode):
     acc_loss = np.float128(0.0)
     for step in range(total_num_steps):
         if mode == "train":
-            feed_inputs, feed_targets = batch_generator.next(np.random.randint(108000), 1)  # np.random.randint(108000)
+            feed_inputs, feed_targets = batch_generator.next(np.random.randint(108000), 1)  # randomly select training sequences
             feed_dict = {learning_rate: 1e-4, inputs: feed_inputs, targets: feed_targets, is_training: True}
         if mode == "test":
             feed_inputs, feed_targets = batch_generator.next(0, 1)
@@ -544,7 +515,6 @@ def do_epoch(session, sequences, mode):
             _, loss, model_predictions_train = \
                 session.run([optimizer, mse_autoregressive_steering, steering_predictions],
                             feed_dict=feed_dict)
-
             global_train_step += 1
             feed_inputs_train = feed_inputs[:, LEFT_CONTEXT:].flatten()
             steering_targets_train = feed_targets[:, :, 0].flatten()
@@ -554,20 +524,15 @@ def do_epoch(session, sequences, mode):
                  (steering_targets_train - model_predictions_train) ** 2])
             for i, img in enumerate(feed_inputs_train):
                 train_predictions[img] = stats_train[:, i]
-
         elif mode == "test":
-            start = time.time()
             model_predictions= \
                 session.run(steering_predictions,
                             feed_dict=feed_dict)
-            end = time.time()
-            print("Time :" + str(end - start))
             feed_inputs = feed_inputs[:, LEFT_CONTEXT:].flatten()
             model_predictions = model_predictions.flatten()
             global_test_step = global_test_step + 1
             for i, img in enumerate(feed_inputs):
                 test_predictions[img] = model_predictions[i]
-
         if mode != "test":
             acc_loss += loss
             if (step + 1) % 40 == 0:
@@ -592,61 +557,44 @@ with open("CH2_final_evaluation.csv", "r") as f:
 
 with graph.as_default():
     with tf.Session(graph=graph, config=tf.ConfigProto(gpu_options=gpu_options)) as session:
-	# session.run(tf.initialize_all_variables())
-        # for i in range(265):
-        #    _ = session.run([op_list[i]],feed_dict={list_tmp[i]: value[i]})
-        saver.restore(session, '/home/houyuenan/houyn/3d_resnet_lstm/all')
+        if args.flag == 'train':
+            print("Training:")
+            session.run(tf.initialize_all_variables())
+            for i in range(265):
+                _ = session.run([op_list[i]],feed_dict={list_tmp[i]: value[i]})
+        if args.flag == 'test':
+            print("Testing:")
+            saver.restore(session, args.path_trained)
+
         for epoch in range(NUM_EPOCHS):
 	    print("Starting epoch %d" % epoch)
-	    print("Testing:")
 	    mae_error = 0.0
 	    rmse_error = 0.0
 	    test_predictions = []
 	    num_test = 0
-
-
             start = time.time()
 	    _, test_predictions = do_epoch(session=session, sequences=test_seq, mode="test")
             end = time.time()
-            print("Time :" + str(end - start))
+            print("Total testing time :" + str(end - start))
             
 	    for img, pred in test_predictions.items():
 	        img = img.replace("center/", "")
 		mae_error = mae_error + abs(pred - test_label[img])
 		rmse_error = rmse_error + (pred - test_label[img]) ** 2
 		num_test += 1
-
-            test_pred = test_predictions
-            para = [0.1*i for i in range(10)]
-            for count in range(10):
-                test_predictions = test_pred
-                print(count)
-                mae_error = 0.0
-                rmse_error = 0.0
-                for i in range(len(img_name)):
-                    if i == 0:
-                        continue
-                    test_predictions['center/' + img_name[i]] = para[count] * test_predictions['center/' + img_name[i - 1]] + (1 - para[count]) * test_predictions['center/' + img_name[i]] 
-                for i in range(len(img_name)):
-                    mae_error = mae_error + abs(test_predictions['center/' + img_name[i]] - test_label[img_name[i]])
-                    rmse_error = rmse_error + (test_predictions['center/' + img_name[i]] - test_label[img_name[i]]) ** 2
-	        mae_error = mae_error / 1.0 * 180 / 3.1415 / num_test
-	        rmse_error = np.sqrt(rmse_error / 1.0 / num_test) * 180 / 3.1415
-	        print("Testing mae error: %.4f, rmse error: %.4f" % (mae_error, rmse_error))
-
-
-	    '''print("number of test: %d" % num_test)
+            print("number of test: %d" % num_test)
 	    mae_error = mae_error / 1.0 * 180 / 3.1415 / num_test
 	    rmse_error = np.sqrt(rmse_error / 1.0 / num_test) * 180 / 3.1415
-	    print("Testing mae error: %.4f, rmse error: %.4f" % (mae_error, rmse_error))'''
-
+	    print("Testing mae error: %.4f, rmse error: %.4f" % (mae_error, rmse_error))
+            if args.flag == 'test':
+                print('finish testing')
+                break
 	    if best_testing_score is None:
 		best_testing_score = mae_error
 	    if mae_error < best_testing_score:
-	        saver.save(session, '/home/houyuenan/houyn/3d_resnet_lstm/all')
+	        saver.save(session, args.path_save)
 		best_testing_score = mae_error
 		print('\r', " Model has become better, SAVED at epoch %d" % epoch,)
-            break
 	    if epoch != NUM_EPOCHS - 1:
 		print ("Training")
 		_, train_predictions = do_epoch(session=session, sequences=train_seq, mode="train")
@@ -657,8 +605,3 @@ with graph.as_default():
 		    mae_train += stats[-2]
 		print ("Unnormalized MAE(train):", mae_train / len(train_predictions))
 		print ("Training unnormalized RMSE:", np.sqrt(result / len(train_predictions)))
-
-	    if epoch == 0:
-		print ("training number: %d, testing number: %d" % (len(train_predictions), count))
-	      
-

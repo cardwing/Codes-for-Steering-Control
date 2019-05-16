@@ -74,12 +74,12 @@ Note that you can use the code to train models (e.g., PSPNet, SegNet and FCN) in
 cd steering-control
 CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py
 ```
-Note that you need to read [3d_resnet_lstm.py](./steering-control/3d_resnet_lstm.py) carefully and modify the path accordingly. I will remove the hard code part soon.
+Note that you need to read [3d_resnet_lstm.py](./steering-control/3d_resnet_lstm.py) and [options.py](./steering-control/options.py) carefully and modify the path accordingly. Note that current setting is used for Udacity dataset. To run the codes for Comma.ai dataset, please refer to [Comma-ai](https://github.com/commaai/research) and [our paper](https://arxiv.org/abs/1811.02759) to modify several parameters.
 
 ## Train
 
 ```{r, engine='bash', count_lines}
-CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py
+CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py --flag train
 ```
 
 # Performance
@@ -141,4 +141,6 @@ If you have any problems in reproducing the results, just raise an issue in this
 
 - [x] Attach original experimental results
 
-- [ ] Clean all codes, make them readable and reproducable
+- [x] Clean all codes, make them readable and reproducable
+
+- [] Release codes for BDD100K dataset
