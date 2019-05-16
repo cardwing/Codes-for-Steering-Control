@@ -81,6 +81,7 @@ Note that you need to read [3d_resnet_lstm.py](./steering-control/3d_resnet_lstm
 ```{r, engine='bash', count_lines}
 CUDA_VISIBLE_DEVICES="0" python 3d_resnet_lstm.py --flag train
 ```
+Note that the ImageNet pre-trained model is available [here](https://drive.google.com/open?id=14imxspDx2K-gp4c3usVx5IEPv34ecIYy). 
 
 # Performance
 
